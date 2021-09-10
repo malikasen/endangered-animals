@@ -5,6 +5,8 @@ import { Routes, Route, Link } from "react-router-dom";
 import Events from "./Events";
 import Users from "./Users";
 
+import "./global.module.scss";
+
 const App = () => (
   <main>
     <nav>
