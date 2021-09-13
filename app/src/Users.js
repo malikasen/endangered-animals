@@ -5,9 +5,9 @@ import * as apiClient from "./apiClient";
 const Users = () => {
   const [users, setUsers] = React.useState([]);
 
-  const loadUsers = () => setUsers(apiClient.getUsers());
-  const addUser = (user) => {
-    apiClient.addUser(user);
+  const loadUsers = async () => setUsers(await apiClient.getUsers());
+  const addUser = async (user) => {
+    await apiClient.addUser(user);
     loadUsers();
   };
 
