@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.3
--- Dumped by pg_dump version 13.3
+-- Dumped from database version 13.4
+-- Dumped by pg_dump version 13.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,54 +21,21 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: tasks; Type: TABLE; Schema: public; Owner: -
+-- Name: individuals; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.tasks (
-    id integer NOT NULL,
-    name text
-);
-CREATE TABLE public.species (
-    id integer NOT NULL,
-    common_name text,
-    scientific_name text,
-    est_population integer,
-    conservation_status_code text,
-    record_timestamp timestamp
-);
 CREATE TABLE public.individuals (
     id integer NOT NULL,
     nickname text,
     species_id integer,
-    record_timestamp timestamp
+    record_timestamp timestamp without time zone
 );
-CREATE TABLE public.sightings (
-    id integer NOT NULL,
-    date_time timestamp,
-    individual_id integer,
-    location text,
-    health_status boolean,
-    email text,
-    record_timestamp timestamp
-);
+
+
 --
--- Name: tasks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: individuals_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.tasks_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-CREATE SEQUENCE public.species_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
 CREATE SEQUENCE public.individuals_id_seq
     AS integer
     START WITH 1
@@ -76,7 +43,99 @@ CREATE SEQUENCE public.individuals_id_seq
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
+
+
+--
+-- Name: individuals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.individuals_id_seq OWNED BY public.individuals.id;
+
+
+--
+-- Name: sightings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sightings (
+    id integer NOT NULL,
+    date_time timestamp without time zone,
+    individual_id integer,
+    location text,
+    health_status boolean,
+    email text,
+    record_timestamp timestamp without time zone
+);
+
+
+--
+-- Name: sightings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
 CREATE SEQUENCE public.sightings_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sightings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sightings_id_seq OWNED BY public.sightings.id;
+
+
+--
+-- Name: species; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.species (
+    id integer NOT NULL,
+    common_name text,
+    scientific_name text,
+    est_population integer,
+    conservation_status_code text,
+    record_timestamp timestamp without time zone
+);
+
+
+--
+-- Name: species_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.species_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: species_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.species_id_seq OWNED BY public.species.id;
+
+
+--
+-- Name: tasks; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.tasks (
+    id integer NOT NULL,
+    name text
+);
+
+
+--
+-- Name: tasks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.tasks_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -90,17 +149,82 @@ CREATE SEQUENCE public.sightings_id_seq
 --
 
 ALTER SEQUENCE public.tasks_id_seq OWNED BY public.tasks.id;
-ALTER SEQUENCE public.species_id_seq OWNED BY public.species.id;
-ALTER SEQUENCE public.individuals_id_seq OWNED BY public.individuals.id;
-ALTER SEQUENCE public.sightings_id_seq OWNED BY public.sightings.id;
+
+
+--
+-- Name: individuals id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.individuals ALTER COLUMN id SET DEFAULT nextval('public.individuals_id_seq'::regclass);
+
+
+--
+-- Name: sightings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sightings ALTER COLUMN id SET DEFAULT nextval('public.sightings_id_seq'::regclass);
+
+
+--
+-- Name: species id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.species ALTER COLUMN id SET DEFAULT nextval('public.species_id_seq'::regclass);
+
+
 --
 -- Name: tasks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_id_seq'::regclass);
-ALTER TABLE ONLY public.species ALTER COLUMN id SET DEFAULT nextval('public.species_id_seq'::regclass);
-ALTER TABLE ONLY public.individuals ALTER COLUMN id SET DEFAULT nextval('public.individuals_id_seq'::regclass);
-ALTER TABLE ONLY public.sightings ALTER COLUMN id SET DEFAULT nextval('public.sightings_id_seq'::regclass);
+
+
+--
+-- Data for Name: individuals; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.individuals (id, nickname, species_id, record_timestamp) FROM stdin;
+1	Alice	1	2020-02-20 00:00:00
+2	Bob	1	2018-02-20 00:00:00
+3	John	1	2019-02-20 00:00:00
+4	Charlie	2	2020-03-20 00:00:00
+5	Misu	2	2020-03-20 00:00:00
+6	Gretta	2	2020-03-20 00:00:00
+7	Ashley	3	2021-03-20 00:00:00
+8	Sharik	3	2021-03-20 00:00:00
+9	Murka	3	2021-03-20 00:00:00
+\.
+
+
+--
+-- Data for Name: sightings; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.sightings (id, date_time, individual_id, location, health_status, email, record_timestamp) FROM stdin;
+1	2020-02-10 00:00:00	1	South China	t	malika@gmail.com	2020-02-20 00:00:00
+2	2020-02-01 00:00:00	1	South East China	f	matt@gmail.com	2020-02-02 00:00:00
+3	2020-03-02 00:00:00	2	India	t	aaron@gmail.com	2020-03-20 00:00:00
+4	2020-03-07 00:00:00	2	India	t	madina@gmail.com	2020-03-20 00:00:00
+5	2021-03-18 00:00:00	2	United States	f	greg@gmail.com	2021-03-20 00:00:00
+\.
+
+
+--
+-- Data for Name: species; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.species (id, common_name, scientific_name, est_population, conservation_status_code, record_timestamp) FROM stdin;
+1	Giant Panda	Ailuropoda malenoleuca	2500	CR	2020-02-20 00:00:00
+2	Tiger	Panthera tigris	4000	CR	2020-03-20 00:00:00
+3	Whooping Crane	Grus americana	400	CR	2021-03-20 00:00:00
+4	Blue Whale	Balaenoptera musculus	25000	CR	2020-03-02 00:00:00
+5	Asian Elephant	Elephas maximus	45000	CR	2020-07-15 00:00:00
+6	Sea Otter	Enhydra lutris	2000	CR	2021-09-10 00:00:00
+7	Snow Leopard	Pamthera uncia	6500	CR	2021-05-19 00:00:00
+8	Gorilla	Gorilla beringei andGorilla gorilla	220000	CR	2021-08-29 00:00:00
+9	Tasmanian Devil	Sarcophilus harrisii	10000	CR	2021-06-15 00:00:00
+10	Orangutan	Pongo pymaeus	60000	CR	2021-04-09 00:00:00
+\.
 
 
 --
@@ -117,10 +241,55 @@ COPY public.tasks (id, name) FROM stdin;
 
 
 --
+-- Name: individuals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.individuals_id_seq', 9, true);
+
+
+--
+-- Name: sightings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sightings_id_seq', 5, true);
+
+
+--
+-- Name: species_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.species_id_seq', 10, true);
+
+
+--
 -- Name: tasks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.tasks_id_seq', 5, true);
+
+
+--
+-- Name: individuals individuals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.individuals
+    ADD CONSTRAINT individuals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sightings sightings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sightings
+    ADD CONSTRAINT sightings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: species species_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.species
+    ADD CONSTRAINT species_pkey PRIMARY KEY (id);
 
 
 --
@@ -129,12 +298,8 @@ SELECT pg_catalog.setval('public.tasks_id_seq', 5, true);
 
 ALTER TABLE ONLY public.tasks
     ADD CONSTRAINT tasks_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY public.species
-    ADD CONSTRAINT species_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY public.individuals
-    ADD CONSTRAINT individuals_pkey PRIMARY KEY (id);
-ALTER TABLE ONLY public.sightings
-    ADD CONSTRAINT sightings_pkey PRIMARY KEY (id);
+
+
 --
 -- PostgreSQL database dump complete
 --
