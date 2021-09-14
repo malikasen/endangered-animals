@@ -26,32 +26,32 @@ function Sighting() {
       <form onSubmit={collectData}>
         <fieldset>
           <label for='date'>Date</label>
-          <input id='date' name='date' value={date}></input>
+          <input id='date' name='date' type='date' value={date}></input>
         </fieldset>
     
         <fieldset>
           <label for='individual_id'>Individual ID</label>
-          <input id='individual_id' name='individual_id' value={indId}></input>
+          <input id='individual_id' name='individual_id' type='number' min='1' step='1' value={indId}></input>
         </fieldset>
         
         <fieldset>
           <label for='location'>Location</label>
-          <input id='location' name='location' value={location}></input>
+          <input id='location' name='location' type='text' value={location}></input>
         </fieldset>
         
         <fieldset>
           <label for='health'>Health Status</label>
-          <input id='email' name='email' value={health}></input>
+          <input id='email' name='email' type='text' value={health}></input>
         </fieldset>
         
         <fieldset>
           <label for='email'>Email</label>
-          <input id='email' name='email' value={email}></input>
+          <input id='email' name='email' type='email' value={email}></input>
         </fieldset>
         
         <fieldset>
           <label for='timestamp'>Record Timestamp</label>
-          <input id='timestamp' name='timestamp' value={timestamp}></input>
+          <input id='timestamp' name='timestamp' type='date' value={timestamp}></input>
         </fieldset>
         
         <input type='button' value='Submit'></input>
