@@ -28,13 +28,55 @@ CREATE TABLE public.tasks (
     id integer NOT NULL,
     name text
 );
-
-
+CREATE TABLE public.species (
+    id integer NOT NULL,
+    common_name text,
+    scientific_name text,
+    est_population integer,
+    conservation_status_code text,
+    record_timestamp timestamp
+);
+CREATE TABLE public.individuals (
+    id integer NOT NULL,
+    nickname text,
+    species_id integer,
+    record_timestamp timestamp
+);
+CREATE TABLE public.sightings (
+    id integer NOT NULL,
+    date_time timestamp,
+    individual_id integer,
+    location text,
+    health_status boolean,
+    email text,
+    record_timestamp timestamp
+);
 --
 -- Name: tasks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.tasks_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+CREATE SEQUENCE public.species_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+CREATE SEQUENCE public.individuals_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+CREATE SEQUENCE public.sightings_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -48,13 +90,17 @@ CREATE SEQUENCE public.tasks_id_seq
 --
 
 ALTER SEQUENCE public.tasks_id_seq OWNED BY public.tasks.id;
-
-
+ALTER SEQUENCE public.species_id_seq OWNED BY public.species.id;
+ALTER SEQUENCE public.individuals_id_seq OWNED BY public.individuals.id;
+ALTER SEQUENCE public.sightings_id_seq OWNED BY public.sightings.id;
 --
 -- Name: tasks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_id_seq'::regclass);
+ALTER TABLE ONLY public.species ALTER COLUMN id SET DEFAULT nextval('public.species_id_seq'::regclass);
+ALTER TABLE ONLY public.individuals ALTER COLUMN id SET DEFAULT nextval('public.individuals_id_seq'::regclass);
+ALTER TABLE ONLY public.sightings ALTER COLUMN id SET DEFAULT nextval('public.sightings_id_seq'::regclass);
 
 
 --
@@ -66,7 +112,7 @@ COPY public.tasks (id, name) FROM stdin;
 2	⏲ Added entries will be reset every Sunday
 3	End white supremacy
 4	Advocate for living wage
-5	Provide universal health care
+5	Malika
 \.
 
 
@@ -83,8 +129,12 @@ SELECT pg_catalog.setval('public.tasks_id_seq', 5, true);
 
 ALTER TABLE ONLY public.tasks
     ADD CONSTRAINT tasks_pkey PRIMARY KEY (id);
-
-
+ALTER TABLE ONLY public.species
+    ADD CONSTRAINT species_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.individuals
+    ADD CONSTRAINT individuals_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.sightings
+    ADD CONSTRAINT sightings_pkey PRIMARY KEY (id);
 --
 -- PostgreSQL database dump complete
 --
