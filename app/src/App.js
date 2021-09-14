@@ -1,8 +1,9 @@
 import * as React from "react";
 
 import { Routes, Route, Link } from "react-router-dom";
-
+import Sighting from "./Sighting";
 import Tasks from "./Tasks";
+
 
 const App = () => (
   <main>
@@ -21,6 +22,7 @@ const Home = () => (
     <h1>{process.env.REACT_APP_TITLE}</h1>
     <h2>{process.env.REACT_APP_SUBTITLE}</h2>
     <Tasks />
+    <Sighting />
   </>
 );
 
