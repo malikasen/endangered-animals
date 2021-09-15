@@ -9,7 +9,7 @@ function Sighting() {
   const [email, setEmail] = useState('');
   const [timestamp, setTimestamp] = useState('');
   // const []
-  const collectData = () => {
+  const collectData = (e) => {
     e.preventDefault();
     const newSighting = {date: date, indId: indId, location: location, health: health, email: email, timestamp: timestamp}
     // need add post function
