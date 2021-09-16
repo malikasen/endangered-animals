@@ -21,7 +21,7 @@ const Home = () => (
   <>
     <h1>{process.env.REACT_APP_TITLE}</h1>
     <h2>{process.env.REACT_APP_SUBTITLE}</h2>
-    <Tasks />
+    {/* <Tasks /> */}
     <h2>Endangered Animals</h2>
     <SightingsList />
   </>

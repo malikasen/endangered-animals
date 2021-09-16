@@ -1,25 +1,17 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from "react";
 
 function Sighting({sighting}) {
-  // debugger
-  return <li>
-    <div className='container'>
-      <div className='row'>
-        <div className='col'>{sighting.date_time}</div>
-        <div className='col'>{sighting.nickname}</div>
-        <div className='col'>{sighting.location}</div>
-        <div className='col'>{sighting.health_status.toString()}</div>
-        <div className='col'>{sighting.email}</div>
-        <div className='col'>{sighting.record_timestamp}</div>
-      </div>
+  return (
+    <div className='row'>
+      <div className='col'>{sighting.date_time.substring(0,10)}</div>
+      <div className='col'>{sighting.nickname}</div>
+      <div className='col'>{sighting.location}</div>
+      <div className='col'>{sighting.health_status.toString()}</div>
+      <div className='col'>{sighting.email}</div>
+      <div className='col'>{sighting.record_timestamp.substring(0,10)}</div>
     </div>
-    {/* <div>Date seen: {sighting.date_time}</div>
-    <div>Individual Nickname: {sighting.nickname}</div>
-    <div>Location: {sighting.location}</div>
-    <div>Health status: {sighting.health_status.toString()}</div>
-    <div>Contact email: {sighting.email}</div>
-    <div>Record time: {sighting.record_timestamp}</div> */}
-    </li>
+  )
 }
 
 function SightingsList() {
@@ -78,11 +70,23 @@ function SightingsList() {
   }
   return (
     <div>
-      <ul>
+      <div className='container'>
+          <div className='row'>
+            <div className='col'>Date</div>
+            <div className='col'>Nickname</div>
+            <div className='col'>Location</div>
+            <div className='col'>Health status</div>
+            <div className='col'>Email</div>
+            <div className='col'>Record time</div>
+          </div>
         {sightings.map((sighting) => {
-          return <Sighting key={sighting.id} sighting={sighting}/>
+          return (
+            <div>
+              <Sighting key={sighting.id} sighting={sighting}/>
+            </div>
+          )
         })}
-      </ul>
+      </div>
       <h3>Please use the form to record the endangered animal sighting</h3>
       <form onSubmit={collectData}>
         <fieldset>
