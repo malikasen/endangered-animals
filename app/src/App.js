@@ -3,10 +3,11 @@ import * as React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import SightingsList from "./SightingsList";
 import Tasks from "./Tasks";
+import './App.css' 
 
 
 const App = () => (
-  <main>
+  <main className='App'>
     <nav>
       <Link to="/">Home</Link> | <Link to="dashboard">Dashboard</Link>
     </nav>
