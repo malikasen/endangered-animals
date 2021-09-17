@@ -106,12 +106,12 @@ function SightingsList() {
       </div>
       <h3>Please use the form to record the endangered animal sighting</h3>
       <form className="form-horizontal" onSubmit={collectData}>
-        <div className="form-group row">
+        <fieldset className="form-group row">
           <label for='date' className="col-sm-2 control-label">Date</label>
           <div class="col-sm-10">
             <input id='date' name='date' type='date' className="form-control" value={date} onChange={(e) => setDate(e.target.value)} required></input>
           </div>
-        </div>
+        </fieldset>
     
         <fieldset className="form-group row">
           <label for='individual_id' className="col-sm-2 control-label">Individual ID</label>
@@ -146,10 +146,15 @@ function SightingsList() {
           <div class="col-sm-10">
             <input id='timestamp' name='timestamp' type='date' className="form-control" value={timestamp} onChange={(e) => setTimestamp(e.target.value)} required></input>
           </div>
-          
         </fieldset>
-        
-        <input type='submit' value='Submit'></input>
+
+        <div className="form-group row">
+          <div className="col-sm-4"></div>
+          <div className="col-sm-4" >
+            <input type='submit' className='button' value='Submit'></input>
+          </div>
+          <div className="col-sm-4"></div>
+        </div>
       </form>
  
     </div>
