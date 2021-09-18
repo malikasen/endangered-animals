@@ -1,6 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, useEffect } from "react";
 
+import { Dropdown, MenuItem, DropdownButton } from "react-bootstrap";
+import React, { useState, useEffect, useCallback } from "react";
+require('react-dom');
+window.React2 = require('react');
+console.log(window.React1 === window.React2);
+console.log(window.React1, window.React2);
 // function Sighting({sighting}) {
 //   return (
 //     <tr className='row'>
@@ -22,12 +27,19 @@ function SightingsList() {
   const [email, setEmail] = useState('');
   const [timestamp, setTimestamp] = useState('');
   const [sightings, setSightings] = useState([]);
+  const [permanentSightings, setPermanentSightings] = useState([]);
+  const [filterNickname, setFilterNickname] = useState('');
   const getSightings = () => {
     fetch("http://localhost:3000/sightings")
       .then(res => {
         return res.json()
       })
-      .then((res) => setSightings(res));
+      .then((res) => {
+        console.log("response", res)
+        setSightings(res);
+        setPermanentSightings(res);
+      });
+
   };
   const postSighting = (newUser) => {
     fetch("http://localhost:3000/sightings", {
@@ -67,10 +79,64 @@ function SightingsList() {
     setHealth('');
     setEmail('');
     setTimestamp('');
-  }
+  };
+  const filter = (filterNicknameParam) => {
+    // e.preventDefault();
+    setSightings(permanentSightings.filter(function(sighting) {
+      console.log("sigting - nickName",sighting.nickName);
+      console.log("filter-nickname-prarm", filterNicknameParam);
+      return (sighting.nickname.includes(filterNicknameParam));
+    }))
+    console.log("sightings", sightings);
+    console.log("filter Nickname Param", filterNicknameParam);
+    console.log("filter Nickname", filterNickname);
+  };
+  const onChange = (e) => {
+    setFilterNickname(e.target.value);
+    filter(e.target.value);
+    console.log("console", e.target.value);
+  };
   return (
     <div>
       <h3>Sighting Log</h3>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-sm-3'></div>
+          <div className='col-sm-3'></div>
+          <div className='col-sm-3'>
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic" className='button'>
+                Filter By
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">Date</Dropdown.Item>
+                <input placeholder='Nickname' value={filterNickname} onChange= {onChange}></input>
+                <Dropdown.Item href="#/action-3">Location</Dropdown.Item>
+                <Dropdown.Item href="#/action-1">Health status</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Email</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Record date</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+          <div className='col-sm-3'>
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic" className='button'>
+                Sort By
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">Date</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Nickname</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Location</Dropdown.Item>
+                <Dropdown.Item href="#/action-1">Health status</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Email</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Record date</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        </div>
+      </div>
       <div className='table-responsive'>
         <table className='table table-hover'>
             <thead>
@@ -80,7 +146,7 @@ function SightingsList() {
               <th>Location</th>
               <th>Health status</th>
               <th>Email</th>
-              <th>Record time</th>
+              <th>Record date</th>
             </tr>
             </thead>
             <tbody>
