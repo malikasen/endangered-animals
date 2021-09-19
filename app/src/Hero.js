@@ -6,8 +6,7 @@ import th3 from './images/th3.jpg'
 
 function Hero() {
   return (
-    <div>
-      {/* <img src={theme} /> */}
+    <div className='slides'>
       <Carousel variant="dark">
         <Carousel.Item className='carousel'>
           <img
@@ -15,7 +14,7 @@ function Hero() {
             src={th1}
             alt="First slide"
           />
-          <Carousel.Caption>
+          <Carousel.Caption className='carouselCaption'>
             <div className='textbox'>
               <p>The World Wildlife Organization focuses on saving certain species that help sustain other species. They protect wildlife such as pandas, whales, rhinos, marine turtles, primates, polar bears, and big cats.</p>
             </div>
@@ -27,7 +26,7 @@ function Hero() {
             src={th2}
             alt="Second slide"
           />
-          <Carousel.Caption>
+          <Carousel.Caption className='carouselCaption'>
             <div className='textbox'>
               <p>A species is declared extinct after many years of not being spotted. Because it takes so long to define an entire species as extinct, it is probable that there are many species already gone that we are unaware of.</p>
             </div>
@@ -39,7 +38,7 @@ function Hero() {
             src={th3}
             alt="Third slide"
           />
-          <Carousel.Caption>
+          <Carousel.Caption className='carouselCaption'>
             <div className='textbox'>
               <p>99% of currently threatened species are at risk from human activities, primarily those driving habitat loss, introduction of exotic species, and global warming.</p>
             </div>
