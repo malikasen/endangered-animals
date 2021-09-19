@@ -76,7 +76,7 @@ function SightingsList() {
   return (
     <div>
       <h3>Sighting Log</h3>
-      <FilterSort permanentSightings={permanentSightings} setSightings={setSightings}/>
+      <FilterSort permanentSightings={permanentSightings} setSightings={setSightings} sightings={sightings} />
       <div className='table-responsive'>
         <table className='table table-hover'>
             <thead>

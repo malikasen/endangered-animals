@@ -28,7 +28,7 @@ function IndividualList() {
   }
   return (
     <div>
-      <h2>Search for an endangered animal by nickname</h2>
+      <h2>Search by nickname</h2>
       <form className='form-horizontal' action="#">
         <fieldset className="form-group row">
           <label className="col-sm-2 control-label" for="nickname-search">Nickname</label>

@@ -19,6 +19,15 @@ form {
 .button {
   display: block;
   width: 100%;
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  border-radius: 10px;
+  /* background-color: #292b2c important!; */
+}
+.button:hover {
+  background-color: #555555;
+  color: white;
 }
 .dropdown:hover .dropdownMenu {
   display: block;
