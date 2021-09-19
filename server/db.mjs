@@ -3,8 +3,6 @@ import pgp from "pg-promise";
 
 const db = initDb();
 
-export const getTasks = () => 
-  db.any("SELECT * FROM tasks");
 export const getSightings = () => 
   db.any("SELECT sightings.*, individuals.nickname FROM sightings LEFT OUTER JOIN individuals on individuals.id=sightings.individual_id");
 export const postSighting = ({ date, indId, location, health, email, timestamp }) => 
