@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Dropdown, MenuItem, DropdownButton } from "react-bootstrap";
-import React, { useState, useEffect, useCallback } from "react";
+import { Dropdown } from "react-bootstrap";
+import React, { useState } from "react";
 
 function FilterSort({permanentSightings, setSightings}) {
   const [filterNickname, setFilterNickname] = useState('');
@@ -21,11 +21,11 @@ function FilterSort({permanentSightings, setSightings}) {
           <div className='col-sm-3'></div>
           <div className='col-sm-3'>
             <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic" className='button'>
+              <Dropdown.Toggle variant="success" id="dropdown-basic" className='button dropdown'>
                 Filter By
               </Dropdown.Toggle>
 
-              <Dropdown.Menu>
+              <Dropdown.Menu className='dropdownMenu'>
                 <Dropdown.Item href="#/action-1">Date</Dropdown.Item>
                 <input placeholder='Nickname' value={filterNickname} onChange= {onChange}></input>
                 <Dropdown.Item href="#/action-3">Location</Dropdown.Item>
@@ -41,8 +41,8 @@ function FilterSort({permanentSightings, setSightings}) {
                 Sort By
               </Dropdown.Toggle>
 
-              <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Date</Dropdown.Item>
+              <Dropdown.Menu className='dropdownMenu'>
+                <Dropdown.Item href="#/action-1">Date</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Nickname</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Location</Dropdown.Item>
                 <Dropdown.Item href="#/action-1">Health status</Dropdown.Item>

@@ -1,48 +1,48 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel'
-import theme1 from './images/theme1.jpg' 
-import theme2 from './images/theme2.jpg' 
-import theme3 from './images/theme3.jpg'
+import th1 from './images/th1.jpg' 
+import th2 from './images/th2.jpg'
+import th3 from './images/th3.jpg'  
 
 function Hero() {
   return (
     <div>
       {/* <img src={theme} /> */}
       <Carousel variant="dark">
-        <Carousel.Item>
+        <Carousel.Item className='carousel'>
           <img
             className="d-block w-100"
-            height='600px'
-            src={theme1}
+            src={th1}
             alt="First slide"
           />
           <Carousel.Caption>
-            <h5>First slide label</h5>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <div className='textbox'>
+              <p>The World Wildlife Organization focuses on saving certain species that help sustain other species. They protect wildlife such as pandas, whales, rhinos, marine turtles, primates, polar bears, and big cats.</p>
+            </div>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
+        <Carousel.Item className='carousel'>
           <img
             className="d-block w-100"
-            height='600px'
-            src={theme2}
+            src={th2}
             alt="Second slide"
           />
           <Carousel.Caption>
-            <h5>Second slide label</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div className='textbox'>
+              <p>A species is declared extinct after many years of not being spotted. Because it takes so long to define an entire species as extinct, it is probable that there are many species already gone that we are unaware of.</p>
+            </div>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
+        <Carousel.Item className='carousel'>
           <img
             className="d-block w-100"
-            height='600px'
-            src={theme3}
+            src={th3}
             alt="Third slide"
           />
           <Carousel.Caption>
-            <h5>Third slide label</h5>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            <div className='textbox'>
+              <p>99% of currently threatened species are at risk from human activities, primarily those driving habitat loss, introduction of exotic species, and global warming.</p>
+            </div>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
@@ -52,7 +52,7 @@ function Hero() {
 
 export default Hero;
 
-// theme1 from https://greeniscool.biz/wp-content/uploads/2021/06/what-animals-are-endangered-1024x716.jpg
-// theme2 from https://drb960u7vv58y.cloudfront.net/resize/187946/600/314/image.jpg
-// theme3 from https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555927862/shape/mentalfloss/3332350-565x566_6.jpg
-// theme4 elephant from https://vetpaw.org/wp-content/uploads/2020/05/vetpaw-news-1080x675.jpg
+// facts from https://www.dosomething.org/us/facts/11-facts-about-endangered-species
+//th1 https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.nwf.org%2FEducational-Resources%2FWildlife-Guide%2FMammals%2FBlue-Whale&psig=AOvVaw255kb6JnaycJHnLVUVmXrl&ust=1632113202518000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCMizn8-divMCFQAAAAAdAAAAABBC
+//th2 https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.nwf.org%2FEducational-Resources%2FWildlife-Guide%2FMammals%2FFlorida-Panther&psig=AOvVaw255kb6JnaycJHnLVUVmXrl&ust=1632113202518000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCMizn8-divMCFQAAAAAdAAAAABA9
+//th3 https://www.google.com/url?sa=i&url=https%3A%2F%2Fbristolzoo.org.uk%2Flatest-zoo-news%2Fhow-the-work-of-bristol-zoological-society-is-helping-protect-threatened-species-in-the-zoo-and-around-the-world&psig=AOvVaw255kb6JnaycJHnLVUVmXrl&ust=1632113202518000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCMizn8-divMCFQAAAAAdAAAAABA2
