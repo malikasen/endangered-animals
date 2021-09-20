@@ -92,11 +92,6 @@ function SightingsList() {
             <tbody>
               {
                 sightings.map((sighting) => (
-                // return (
-                //   // <div>
-                //     <Sighting key={sighting.id} sighting={sighting}/>
-                //   // </div>
-                // )
                   <tr key={sighting.id}>
                     <td>{sighting.date_time.substring(0,10)}</td>
                     <td>{sighting.nickname}</td>
@@ -139,6 +134,18 @@ function SightingsList() {
             <input id='email' name='email' type='text' className="form-control" value={health} onChange={(e) => setHealth(e.target.value)} required></input>
           </div>
         </fieldset>
+        {/* <fieldset className="form-group row">
+         <label for="true" className="col-sm-2 control-label">Healthy</label>
+         <div class="col-sm-1">
+           <input type="checkbox" id="true" name="true" onCheck={() => setHealth("true")}></input>
+         </div>
+        
+         <label for="false" className="col-sm-2 control-label">Not healthy</label>
+         <div class="col-sm-1">
+           <input type="checkbox" id="false" name="false" onCheck={() => setHealth("false")}></input>
+         </div>
+       </fieldset> */}
+
         
         <fieldset className="form-group row">
           <label for='email' className="col-sm-2 control-label">Email</label>
