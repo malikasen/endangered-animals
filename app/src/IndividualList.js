@@ -5,6 +5,7 @@ function IndividualList() {
   const [nickname, setNickname] = useState(""); 
   const [individual, setIndividual] = useState("");
   const [individuals, setIndividuals] = useState([]);
+  const [wikiPath, setWikiPath] = useState('');
   const getIndividuals = () => {
     fetch("http://localhost:3000/individuals")
       .then(res => {
@@ -20,6 +21,8 @@ function IndividualList() {
     e.preventDefault();
     individuals.filter((individual) => {
       if(individual.nickname === nickname) {
+        individual.record_timestamp = individual.record_timestamp.substring(0,10);
+        setWikiPath(individual.common_name.replace(/ /g,"_"));
         setIndividual(individual);
         console.log("individual", individual);
       }
@@ -50,8 +53,9 @@ function IndividualList() {
           <tr>
             <th>ID</th>
             <th>Nickname</th>
-            <th>Species ID</th>
+            <th>Common Species Name</th>
             <th>Record Timestamp</th>
+            <th>Wikipedia Link</th>
           </tr>
           </thead>
           <tbody>
@@ -59,8 +63,11 @@ function IndividualList() {
               {/* id, nickname, species_id, record_timestamp */}
               <td>{individual.id}</td>
               <td>{individual.nickname}</td>
-              <td>{individual.species_id}</td>
+              <td>{individual.common_name}</td>
               <td>{individual.record_timestamp}</td>
+              <td>
+                <a target='_blank' href={"https://en.wikipedia.org/wiki/"+wikiPath}>Link</a>
+              </td>
             </tr>
           </tbody>
         </table>

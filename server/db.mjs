@@ -8,7 +8,7 @@ export const getSightings = () =>
 export const postSighting = ({ date, indId, location, health, email, timestamp }) => 
   db.one("INSERT INTO sightings(date_time, individual_id, location, health_status, email, record_timestamp) VALUES(${date}, ${indId}, ${location}, ${health}, ${email}, ${timestamp}) RETURNING *", { date, indId, location, health, email, timestamp }) 
 export const getIndividuals = () => 
-  db.any("SELECT * FROM individuals")
+  db.any("SELECT individuals.*, species.common_name FROM individuals LEFT OUTER JOIN species on individuals.species_id=species.id")
 export const addTask = (name) =>
   db.one("INSERT INTO tasks(name) VALUES(${name}) RETURNING *", { name });
 

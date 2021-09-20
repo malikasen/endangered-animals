@@ -54,6 +54,10 @@ form {
   left: 4% !important;
   right: 4% !important;
 }
+.filterItem {
+  display: block;
+  margin : 0 auto;
+}
 /* .textbox h5 {
   padding
 } */
