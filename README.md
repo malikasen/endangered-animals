@@ -99,7 +99,7 @@ npm run psql
 [dh-postgres]: https://hub.docker.com/_/postgres
 [docker-www]: https://docs.docker.com/get-docker/
 [homebrew]: https://brew.sh
-[live]: http://enigmatic-brook-54704.herokuapp.com/
+[live]: http://mighty-scrubland-34886.herokuapp.com/
 [nvm]: https://github.com/nvm-sh/nvm
 [reset-badge]: https://github.com/gsong/express-react-project-example/actions/workflows/reset-db.yml/badge.svg
 [reset-workflow]: https://github.com/gsong/express-react-project-example/actions/workflows/reset-db.yml
