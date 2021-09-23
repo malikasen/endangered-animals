@@ -7,7 +7,7 @@ function IndividualList() {
   const [individuals, setIndividuals] = useState([]);
   const [wikiPath, setWikiPath] = useState('');
   const getIndividuals = () => {
-    fetch("http://localhost:3000/individuals")
+    fetch("/api/individuals")
       .then(res => {
         return res.json()
       })

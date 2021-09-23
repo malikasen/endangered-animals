@@ -25,7 +25,7 @@ function SightingsList() {
   const [permanentSightings, setPermanentSightings] = useState([]);
   
   const getSightings = () => {
-    fetch("http://localhost:3000/sightings")
+    fetch("/api/sightings")
       .then(res => {
         return res.json()
       })
@@ -37,7 +37,7 @@ function SightingsList() {
 
   };
   const postSighting = (newUser) => {
-    fetch("http://localhost:3000/sightings", {
+    fetch("/api/sightings", {
       method:"POST", 
       body: JSON.stringify(newUser), 
       headers: {"content-type": "application/json"}
@@ -46,7 +46,7 @@ function SightingsList() {
         return res.json()
       })
       .then(async () => {
-        return await fetch("http://localhost:3000/sightings", {
+        return await fetch("/api/sightings", {
           method:"GET"
         })
       })
